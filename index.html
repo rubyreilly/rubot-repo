@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Rubot</title>
+
+	<!-- Here go all the libraries -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
+	 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript" src="js/jquery-ui-1.10.3/ui/jquery-ui.js"></script>
+	<script type="text/javascript" src="js/jquery-touch.js"></script>
+
+	<!-- Here go the JQuery Scripts -->
+	<script type="text/javascript" src="js/motion.js"></script>
+	<!-- <script type="text/javascript" src="js/sensors.js"></script> -->
+	<script type="text/javascript" src="js/ajax.js"></script>
+	<!-- <script type="text/javascript" src="js/controls.js"></script> -->
+	<script type="text/javascript" src="js/utility.js"></script>
+
+	<!-- Here goes all the styling -->
+    <!-- <link href="css/jquery-ui.css" rel="stylesheet"/> -->
+    <link href="css/main.css" rel="stylesheet"/>
+
+    <script>
+        $(document).ready(function () {
+			//Global variables here
+			window.sticky = false;
+			window.moving = false;
+			window.currentDirection = 'none';
+			window.angle = 45;
+			window.duration = 2;
+			window.holding = 0;
+			//All init functions go here
+
+            $("#tabs").tabs();
+            $("#navigation_accordion").accordion();
+
+
+			$.fn.addEffects();
+			$.fn.sensorReactToTouch();
+			$.fn.controlSettings();
+			$.fn.clearHistory();
+        });
+    </script>
+</head>
+<body>
+    <div>
+
+					<div id="last-command-window"></div>
+                <h1>Rubot</h1>
+                </div>
+                <div id="controller-buttons-container">
+                    <div id="top" class="horizontal_block hover-area">
+                    	<div id="forward-button" class="horizontal-button button">
+                    		<img src="Media/ForwardButton.png" width="100%" height="100%"/>
+                    	</div>
+                    </div>
+                    <div id="left" class="vertical_block left hover-area">
+	                    <div id="ccw-button" class="horizontal-button button">
+	                    <img src="Media/CounterCW.png" width="100%" height="100%"/>
+	                    </div>
+                    </div>
+                    <!--<div class="joystick"> Drag me</div>-->
+                    <div id="right" class="vertical_block right hover-area">
+                    	<div id="cw-button" class="horizontal-button button">
+                    	<img src="Media/ClockwiseArrow.png" width="100%" height="100%"/>
+                    	</div>
+                    </div>
+                    <div id="bottom" class="horizontal_block hover-area">
+                        <div id="backward-button" class="horizontal-button button">
+                        	<img src="Media/BackwardButton.png" width="100%" height="100%"/>
+                        </div>
+                    </div>
+                   </div>
+                     <div id="hault_section">
+						<div id="stop-button">
+							<img src="Media/StopSign.png" width="200px" height="200px"/>
+						</div>
+					 </div>
+                 <!-- </div>
+
+            </div>
+
+        </div>
+    </div> -->
+
+</body>
+</html>
