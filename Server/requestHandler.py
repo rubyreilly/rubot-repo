@@ -1,5 +1,16 @@
+import hardwareHandler
+
 def moveRubot(value):
-    print ("received %s" %value)
+    if (value=="forw"):
+        print ("received %s" %value)
+        hardwareHandler.powerOnForwardLeftMotor()
+        hardwareHandler.powerOnForwardRightMotor()
+    elif (value=="back"):
+        print ("received %s" %value)
+        hardwareHandler.powerOnBackwardLeftMotor()
+        hardwareHandler.powerOnBackwardRightMotor()
+    else:
+        print ("received %s" %value)
 
 # def sendRubot(value):
 #     print ("received %s" %value)
@@ -7,7 +18,8 @@ def moveRubot(value):
 
 def processRequest(data):
 
-    rubot_directional = {'forward','backward','CW','CCW','clear','auto'}
+    rubot_directional = {'forward','backward','CW','CCW'}
+    # ,'clear','auto'}
 
     result=""
     result2=""
@@ -22,10 +34,10 @@ def processRequest(data):
         elif(data=="CW"):
             result = moveRubot("cloc")
         elif(data=="CCW"):
-            resutl = moveRubot("ccws")
+            result = moveRubot("ccws")
         elif(data=="stop"):
             result = moveRubot("stop")
-        elif(data=="hold"):
-            result = moveRubot("hold")
+        # elif(data=="hold"):
+        #     result = moveRubot("hold")
     else:
         result=moveRubot(data)

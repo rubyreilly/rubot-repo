@@ -7,7 +7,7 @@ import random
 import requestHandler
 
 FILE = 'web/index.html'
-PORT = 2005
+PORT = 2009
 
 
 class RubotHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
