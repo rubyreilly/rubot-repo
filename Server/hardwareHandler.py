@@ -1,50 +1,83 @@
-import gpiozero
-from gpiozero import OutputDevice
+import RPi.GPIO as GPIO
 
-def powerOnForwardLeftMotor():
-    aL = OutputDevice(2)
-    bL = OutputDevice(3)
-    cL = OutputDevice(4)
-    dL = OutputDevice(17)
-    bL.off()
-    cL.off()
-    aL.on()
-    print ("%s on" %aL)
-    dL.on()
-    print ("%s on" %dL)
+class MOTOR_DIRECTIONS:
+    FORWARD_FRONT_LEFT=3
+    FORWARD_FRONT_RIGHT=2
+    FORWARD_REAR_LEFT=4
+    FORWARD_REAR_RIGHT=17
+    BACKWARD_FRONT_LEFT=14
+    BACKWARD_FRONT_RIGHT=15
+    BACKWARD_REAR_LEFT=18
+    BACKWARD_REAR_RIGHT=23
 
-def powerOnBackwardLeftMotor():
-    aL = OutputDevice(2)
-    bL = OutputDevice(3)
-    cL = OutputDevice(4)
-    dL = OutputDevice(17)
-    aL.off()
-    dL.off()
-    bL.on()
-    print ("%s on" %bL)
-    cL.on()
-    print ("%s on" %cL)
 
-def powerOnForwardRightMotor():
-    aL = OutputDevice(14)
-    bL = OutputDevice(15)
-    cL = OutputDevice(18)
-    dL = OutputDevice(23)
-    bL.off()
-    cL.off()
-    aL.on()
-    print ("%s on" %aL)
-    dL.on()
-    print ("%s on" %dL)
+def supplyPower( index ):
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(index,GPIO.OUT)
+    GPIO.output(index,True)
+    
+def cancelPower( index ):
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(index,GPIO.OUT)
+    GPIO.output(index,False)    
 
-def powerOnBackwardRightMotor():
-    aL = OutputDevice(14)
-    bL = OutputDevice(15)
-    cL = OutputDevice(18)
-    dL = OutputDevice(23)
-    aL.off()
-    dL.off()
-    bL.on()
-    print ("%s on" %bL)
-    cL.on()
-    print ("%s on" %cL)
+def forwardMotors():
+    cancelPower( MOTOR_DIRECTIONS.BACKWARD_FRONT_LEFT )
+    cancelPower( MOTOR_DIRECTIONS.BACKWARD_FRONT_RIGHT )
+    cancelPower( MOTOR_DIRECTIONS.BACKWARD_REAR_LEFT)
+    cancelPower( MOTOR_DIRECTIONS.BACKWARD_REAR_RIGHT ) 
+    
+    supplyPower( MOTOR_DIRECTIONS.FORWARD_FRONT_LEFT )
+    supplyPower( MOTOR_DIRECTIONS.FORWARD_FRONT_RIGHT )
+    supplyPower( MOTOR_DIRECTIONS.FORWARD_REAR_LEFT)
+    supplyPower( MOTOR_DIRECTIONS.FORWARD_REAR_RIGHT )
+    
+def reverseMotors():
+    cancelPower( MOTOR_DIRECTIONS.FORWARD_FRONT_LEFT )
+    cancelPower( MOTOR_DIRECTIONS.FORWARD_FRONT_RIGHT )
+    cancelPower( MOTOR_DIRECTIONS.FORWARD_REAR_LEFT )
+    cancelPower( MOTOR_DIRECTIONS.FORWARD_REAR_RIGHT )
+    
+    supplyPower( MOTOR_DIRECTIONS.BACKWARD_FRONT_LEFT )
+    supplyPower( MOTOR_DIRECTIONS.BACKWARD_FRONT_RIGHT )
+    supplyPower( MOTOR_DIRECTIONS.BACKWARD_REAR_LEFT)
+    supplyPower( MOTOR_DIRECTIONS.BACKWARD_REAR_RIGHT )
+    
+def moveRight():
+    cancelPower( MOTOR_DIRECTIONS.FORWARD_FRONT_RIGHT )
+    cancelPower( MOTOR_DIRECTIONS.FORWARD_REAR_RIGHT )
+    cancelPower( MOTOR_DIRECTIONS.BACKWARD_REAR_LEFT)
+    cancelPower( MOTOR_DIRECTIONS.BACKWARD_FRONT_LEFT )
+    
+    supplyPower( MOTOR_DIRECTIONS.BACKWARD_FRONT_RIGHT )
+    supplyPower( MOTOR_DIRECTIONS.BACKWARD_REAR_RIGHT )
+    
+    supplyPower( MOTOR_DIRECTIONS.FORWARD_FRONT_LEFT )
+    supplyPower( MOTOR_DIRECTIONS.FORWARD_REAR_LEFT)
+    
+    
+def moveLeft():
+    cancelPower( MOTOR_DIRECTIONS.FORWARD_FRONT_LEFT )
+    cancelPower( MOTOR_DIRECTIONS.FORWARD_REAR_LEFT )
+    cancelPower( MOTOR_DIRECTIONS.BACKWARD_FRONT_RIGHT )
+    cancelPower( MOTOR_DIRECTIONS.BACKWARD_REAR_RIGHT )
+    
+    supplyPower( MOTOR_DIRECTIONS.BACKWARD_REAR_LEFT)
+    supplyPower( MOTOR_DIRECTIONS.BACKWARD_FRONT_LEFT )
+    
+    supplyPower( MOTOR_DIRECTIONS.FORWARD_FRONT_RIGHT )
+    supplyPower( MOTOR_DIRECTIONS.FORWARD_REAR_RIGHT)
+    
+    
+def stopAll():
+    cancelPower( MOTOR_DIRECTIONS.FORWARD_FRONT_LEFT )
+    cancelPower( MOTOR_DIRECTIONS.FORWARD_FRONT_RIGHT )
+    cancelPower( MOTOR_DIRECTIONS.FORWARD_REAR_LEFT )
+    cancelPower( MOTOR_DIRECTIONS.FORWARD_REAR_RIGHT )
+    cancelPower( MOTOR_DIRECTIONS.BACKWARD_FRONT_LEFT )
+    cancelPower( MOTOR_DIRECTIONS.BACKWARD_FRONT_RIGHT )
+    cancelPower( MOTOR_DIRECTIONS.BACKWARD_REAR_LEFT)
+    cancelPower( MOTOR_DIRECTIONS.BACKWARD_REAR_RIGHT )   
+
+
+    

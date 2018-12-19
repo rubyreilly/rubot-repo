@@ -3,12 +3,23 @@ import hardwareHandler
 def moveRubot(value):
     if (value=="forw"):
         print ("received %s" %value)
-        hardwareHandler.powerOnForwardLeftMotor()
-        hardwareHandler.powerOnForwardRightMotor()
+        hardwareHandler.forwardMotors()
+
     elif (value=="back"):
         print ("received %s" %value)
-        hardwareHandler.powerOnBackwardLeftMotor()
-        hardwareHandler.powerOnBackwardRightMotor()
+        hardwareHandler.reverseMotors()
+        
+    elif (value=="cloc"):
+        print ("received %s" %value)
+        hardwareHandler.moveRight()
+        
+    elif (value=="ccws"):
+        print ("received %s" %value)
+        hardwareHandler.moveLeft()
+        
+    elif (value=="stop"):
+        print ("received %s" %value)
+        hardwareHandler.stopAll()
     else:
         print ("received %s" %value)
 
