@@ -2,7 +2,7 @@
 
 Rubot is a robotic system that responds to user input. The base of the robot is a Raspberry Pi onto which all of the code in this repository must be loaded in order to run the program.
 
-![rp.jpg](rp.jpg)
+![rp.png](rp.png)
 
 ## Software
 
@@ -45,8 +45,10 @@ python Server/rubotServer.py
 yourRapberryPiIPaddress:2009
 ```
 7. You should see:
+
 ![ui.jpg](ui.jpg)
 8. Now you can send requests to the server by hitting any of the buttons, and you should see the requests logged to the terminal on the Raspberry Pi like this:
+
 ![reqs.png](reqs.png)
 
 ## Contributing
