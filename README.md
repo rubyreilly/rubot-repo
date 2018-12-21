@@ -47,6 +47,7 @@ yourRapberryPiIPaddress:2009
 7. You should see:
 
 ![ui.jpg](ui.jpg)
+
 8. Now you can send requests to the server by hitting any of the buttons, and you should see the requests logged to the terminal on the Raspberry Pi like this:
 
 ![reqs.png](reqs.png)
